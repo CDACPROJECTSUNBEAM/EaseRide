@@ -1,0 +1,27 @@
+.publish_ride_img{
+    height: 70%;
+    width: 100%; 
+    margin-top: 8%;
+    margin-left: 5%;
+}
+
+.publish_ride_left{
+    max-height: 30rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(94, 137, 237) transparent;
+}
+
+.publish_ride_labels{
+    font-size: 1rem;
+    margin-top: 7%;
+}
+
+@media only screen and (max-width: 474px){
+    .publish_ride_img{
+        height: 90%;
+        width: 100%; 
+        margin-top: 8%;
+        margin-left: 0%;
+    }
+}

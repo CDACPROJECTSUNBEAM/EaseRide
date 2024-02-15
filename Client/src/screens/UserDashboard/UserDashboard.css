@@ -1,0 +1,21 @@
+.user_card{
+    height: 80%;
+    width: 90%;
+    margin-left: 5%;
+    border: none;
+}
+
+.user_card:hover{
+    cursor: pointer;
+}
+
+.user_card>img{
+    height: 90%;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.user_card>img:hover{
+    transform: scale(1.2);
+    transition: all 0.5s ease;
+}

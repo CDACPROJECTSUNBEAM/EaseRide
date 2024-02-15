@@ -1,0 +1,87 @@
+.profile_card {
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.profile_img img {
+    border-radius: 50%;
+    transition: all 0.5s
+}
+
+.profile_card:hover .profile_img img {
+    transform: scale(1.5)
+}
+
+.profile_img_btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color: #0f82e1;
+    color: #fff;
+    font-size: 12px;
+    transition: all 0.5s
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 12px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    background-color: #ccc
+}
+
+.btn1:hover {
+    border: 2px solid #0f82e1;
+    background-color: #fff;
+    color: #0f82e1;
+}

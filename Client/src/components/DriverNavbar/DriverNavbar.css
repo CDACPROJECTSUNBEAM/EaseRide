@@ -1,0 +1,52 @@
+.welcome{
+    margin-right: 10px;
+}
+
+.profile>button{
+    font-weight: bold;
+    background: transparent;
+    border: none;
+}
+
+.profile>button:hover{
+    transform: scale(1.2);
+    transition: all 0.5s ease;
+}
+
+.logout{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.logout>button{
+    color: rgb(247, 88, 88);
+    font-weight: bold;
+    background: transparent;
+    border: none;
+}
+
+.logout>button:hover{
+    color: rgb(238, 48, 48);
+    font-weight: bolder;
+    transform: scale(1.2);
+    transition: all 0.5s ease;
+}
+
+@media only screen and (max-width: 600px) {
+    .brand_logo, .divide{
+        display: none;
+    }
+
+    .welcome{
+        margin-right: -10px;
+    }
+
+    .profile{
+        margin-left: -4px;
+    }
+
+    .logout{
+        margin-right: -10px;
+        margin-left: -4px;
+    }
+}
