@@ -1,4 +1,7 @@
 import {
+  DRIVER_DETAILS_FAILURE,
+  DRIVER_DETAILS_REQUEST,
+  DRIVER_DETAILS_SUCCESS,
   USER_SIGNIN_FAILURE,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -7,6 +10,8 @@ import {
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
 } from "../constants/authConstants";
+import { RIDE_GET_FAILURE, RIDE_GET_REQUEST, RIDE_GET_SUCCESS } from "../constants/rideConstants";
+import { VEHICLE_GET_FAILURE, VEHICLE_GET_REQUEST, VEHICLE_GET_SUCCESS } from "../constants/vehicleConstants";
 
 
 export const signin = (userDetails, toast, navigate) => (dispatch) => {
@@ -143,6 +148,105 @@ export const getUser = (id) => (dispatch) => {
         type: USER_SIGNIN_FAILURE,
         payload: "Error in loading cities",
         authenticate: false,
+      });
+    });
+};
+
+export const getAvailableRides = () => (dispatch) => {
+  dispatch({
+    type: RIDE_GET_REQUEST,
+  });
+
+  fetch('http://localhost:8081/api/users/availableRides', {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        dispatch({
+          type: RIDE_GET_SUCCESS,
+          payload: data,
+        });
+    })
+    .catch(error => {
+      dispatch({
+        type: RIDE_GET_FAILURE,
+        payload: "Error in loading rides",
+      });
+    });
+};
+
+export const searchRides = (searchDetails) => (dispatch) => {
+
+  dispatch({
+    type: RIDE_GET_REQUEST,
+  });
+
+  fetch('http://localhost:8081/api/users/getRidesByCity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(searchDetails),
+    })
+    .then(response => response.json())
+    .then(data => {
+      dispatch({
+        type: RIDE_GET_SUCCESS,
+        payload: data,
+      });
+    })
+    .catch(error => {
+          dispatch({
+        type: RIDE_GET_FAILURE,
+        payload: "Rides fetching error!!",
+      });
+    });
+};
+
+export const getDriverDetails = (driverId) => (dispatch) => {
+  dispatch({
+    type: DRIVER_DETAILS_REQUEST,
+  });
+
+  fetch(`http://localhost:8081/api/drivers/driver/${driverId}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        dispatch({
+          type: DRIVER_DETAILS_SUCCESS,
+          payload: data,
+        });
+    })
+    .catch(error => {
+      dispatch({
+        type: DRIVER_DETAILS_FAILURE,
+        payload: "Error in loading driver details",
+      });
+    });
+};
+
+export const getVehicleDetails = (driverId, vehicleId) => (dispatch) => {
+  dispatch({
+    type: VEHICLE_GET_REQUEST,
+  });
+
+  fetch(`http://localhost:8081/api/users/vehicleDetails/${driverId}/${vehicleId}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+      
+        dispatch({
+          type: VEHICLE_GET_SUCCESS,
+          payload: data,
+        });
+      
+    })
+    .catch(error => {
+      dispatch({
+        type: VEHICLE_GET_FAILURE,
+        payload: "Vehicle fetching failure",
       });
     });
 };

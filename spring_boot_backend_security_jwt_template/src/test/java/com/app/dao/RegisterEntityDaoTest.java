@@ -36,7 +36,7 @@ public class RegisterEntityDaoTest {
 	@Test
 	void testAddUsers() {
 		List<Register> list = List.of(
-				new Register("Amar", "Madhekar", "Amar@gmail.com", "Amar@1234" , "9834961559", GenderType.MALE,  RoleType.ROLE_ADMIN, LocalDate.of(2001, 3, 13), ""),
+				new Register("Amar", "Madhekar", "Amar@gmail.com", "Amar@1234" , "9834961559", GenderType.MALE,  RoleType.ROLE_ADMIN, LocalDate.of(2001, 3, 13), "Stanza"),
 				new Register("Yash", "Bhosale", "Yash@gmail.com", "Yash@1234" , "9834961559", GenderType.MALE,  RoleType.ROLE_DRIVER, LocalDate.of(2001, 10, 7), "Ravet"),
 				new Register("Akshat", "Shah", "Akshat@gmail.com", "Akshat@1234" , "9834961559", GenderType.MALE,  RoleType.ROLE_USER, LocalDate.of(2001, 1, 12), "TCG, Hinjewadi"),
 				new Register("Pratik", "Bhosale", "Pratik@gmail.com", "Pratik@1234" , "9834961559", GenderType.MALE,  RoleType.ROLE_USER, LocalDate.of(2001, 1, 12), "Sangli"));

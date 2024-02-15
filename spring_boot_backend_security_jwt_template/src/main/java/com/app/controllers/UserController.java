@@ -14,6 +14,7 @@ import com.app.services.UserService;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 	
 	@Autowired
@@ -50,11 +51,9 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/vehicleDetails/{dId}/{car}")
-	public ResponseEntity<VehicleDTO> getVehicleByDriverIdAndCarName(@PathVariable Long dId, @PathVariable String car){
-		System.out.println(dId);
-		System.out.println(car);
-		return new ResponseEntity<VehicleDTO>(dService.getVehicleByName(dId, car), HttpStatus.OK);
+	@GetMapping("/vehicleDetails/{dId}/{vId}")
+	public ResponseEntity<VehicleDTO> getVehicleByDriverIdAndCarName(@PathVariable Long dId, @PathVariable Long vId){
+		return new ResponseEntity<VehicleDTO>(dService.getVehicleById(dId, vId), HttpStatus.OK);
 	}
 
 	@PostMapping("/getRidesByCity")

@@ -26,6 +26,7 @@ import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import PastBookings from "./screens/PastBookings/PastBookings";
 import StatesScreen from "./screens/StatesScreen/StatesScreen";
 import CityScreen from "./screens/CityScreen/CityScreen";
+import BookRide from "./screens/BookRide/BookRide";
 
 function App() {
   
@@ -42,6 +43,7 @@ function App() {
           <Route path="/user/signin" element={<UserSigninScreen />} />
           <Route path="/user" element={<UserDashboard />} />
           <Route path="/user/viewRides" element={<ViewRides />} />
+          <Route path="/user/bookRide/:driverId/:vehicleId/:rideId" element={<BookRide />} />
           <Route path="/user/reqRide" element={<ReqRide />} />
           <Route path="/user/bookings" element={<PastBookings />} />
           <Route path="/driver" element={<DriverDashboard />} />

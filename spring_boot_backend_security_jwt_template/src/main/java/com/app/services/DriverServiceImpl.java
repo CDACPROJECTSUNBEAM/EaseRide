@@ -95,9 +95,9 @@ public class DriverServiceImpl implements DriverService {
 	}
 
 	@Override
-	public VehicleDTO getVehicleByName(Long id, String car) {
-		Register driverEntity = registerRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Record Not Found!"));
-		Vehicle vehicle = vRepo.getVehicle(driverEntity, car);
+	public VehicleDTO getVehicleById(Long dId, Long vId) {
+		Register driverEntity = registerRepo.findById(dId).orElseThrow(()-> new ResourceNotFoundException("Record Not Found!"));
+		Vehicle vehicle = vRepo.findById(vId).orElseThrow(()-> new ResourceNotFoundException("Record Not Found!"));
 		return mapper.map(vehicle, VehicleDTO.class);
 	}
 

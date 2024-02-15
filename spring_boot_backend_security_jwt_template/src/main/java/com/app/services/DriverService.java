@@ -11,7 +11,7 @@ public interface DriverService {
 	
 	public VehicleDTO addVehicle(Long id, VehicleDTO vDto);
 	
-	public VehicleDTO getVehicleByName(Long id, String car);
+	public VehicleDTO getVehicleById(Long dId, Long vId);
 
 	public List<BookingResponseDTO> getAllBookingsByDriverId(Long dId);
 

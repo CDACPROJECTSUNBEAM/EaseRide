@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ViewRides.css";
 import UserNavbar from "../../components/UserNavbar/UserNavbar";
 import UserFooter from "../../components/UserFooter/UserFooter";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAvailableRides, searchRides } from "../../actions/userAuthAction";
+import { Link } from "react-router-dom";
 
 const ViewRides = () => {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
 
+  const dispatch = useDispatch();
+
   const data = useSelector(state => state.userSignin);
   let user = data.response;
+
+  const ridesData = useSelector(state => state.availableRides);
+  let rides = ridesData.response;
+
+  useEffect(() => {
+    dispatch(getAvailableRides());
+  }, [])
 
   const submitData = (e) => {
     e.preventDefault();
     console.log(start + " " + end);
+    let searchDetails = {
+      startCity: start,
+      endCity: end,
+    }
+
+    dispatch(searchRides(searchDetails));
   }
 
   return (
@@ -57,126 +74,42 @@ const ViewRides = () => {
 
       <div className="container my-3">
         <div className="row">
-          <div className="col-md-3">
+          {
+            rides && rides.map((r) => (
+              <div className="col-md-4">
             <div
               class="card fw-bold text-center mb-3 viewRide_card"
               style={{ maxWidth: "100%" }}
             >
-              <div class="card-header">Pune &lt;-&gt; Mumbai</div>
+              <div class="card-header">{r.startCity} &lt;-&gt; {r.endCity}</div>
               <div class="card-body">
                 <h5 class="card-title">Journey Details</h5>
                 <p class="card-text">
-                  <span className="text-muted">Seats Available </span> - 4{" "}
+                  <span className="text-muted">Seats Available </span> - {r.availableSeats}{" "}
                   <br />
-                  <span className="text-muted">Driver's Name </span> - ABC{" "}
+                  <span className="text-muted">Journey Date </span> - {r.doj}{" "}
                   <br />
-                  <span className="text-muted">Contact No. </span> - 9191919919{" "}
+                  <span className="text-muted">Reaching Date </span> - {r.eoj}{" "}
                   <br />
-                  <span className="text-muted">Cost of Ride </span> - Rs. 1000/-
+                  <span className="text-muted">Departure Time </span> - {r.departureTime}{" "}
+                  <br />
+                  <span className="text-muted">Reaching Time </span> - {r.reachingTime}{" "}
+                  <br />
+                  <span className="text-muted">Cost Per Seat </span> - Rs. {r.price}/-
                   <br />
                 </p>
-                <button className="btn btn-primary w-100 book_btn">
+                <Link to={`/user/bookRide/${r.driverIdId}/${r.vehicleId}/${r.id}`}>
+                <button disabled={r.availableSeats === 0} className="btn btn-primary w-100 book_btn">
+                  
                   Book a Ride
+                  
                 </button>
+                </Link>
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div
-              class="card fw-bold text-center mb-3 viewRide_card"
-              style={{ maxWidth: "100%" }}
-            >
-              <div class="card-header">Pune &lt;-&gt; Mumbai</div>
-              <div class="card-body">
-                <h5 class="card-title">Journey Details</h5>
-                <p class="card-text">
-                  <span className="text-muted">Seats Available </span> - 4{" "}
-                  <br />
-                  <span className="text-muted">Driver's Name </span> - ABC{" "}
-                  <br />
-                  <span className="text-muted">Contact No. </span> - 9191919919{" "}
-                  <br />
-                  <span className="text-muted">Cost of Ride </span> - Rs. 1000/-
-                  <br />
-                </p>
-                <button className="btn btn-primary w-100 book_btn">
-                  Book a Ride
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div
-              class="card fw-bold text-center mb-3 viewRide_card"
-              style={{ maxWidth: "100%" }}
-            >
-              <div class="card-header">Pune &lt;-&gt; Mumbai</div>
-              <div class="card-body">
-                <h5 class="card-title">Journey Details</h5>
-                <p class="card-text">
-                  <span className="text-muted">Seats Available </span> - 4{" "}
-                  <br />
-                  <span className="text-muted">Driver's Name </span> - ABC{" "}
-                  <br />
-                  <span className="text-muted">Contact No. </span> - 9191919919{" "}
-                  <br />
-                  <span className="text-muted">Cost of Ride </span> - Rs. 1000/-
-                  <br />
-                </p>
-                <button className="btn btn-primary w-100 book_btn">
-                  Book a Ride
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div
-              class="card fw-bold text-center mb-3 viewRide_card"
-              style={{ maxWidth: "100%" }}
-            >
-              <div class="card-header">Pune &lt;-&gt; Mumbai</div>
-              <div class="card-body">
-                <h5 class="card-title">Journey Details</h5>
-                <p class="card-text">
-                  <span className="text-muted">Seats Available </span> - 4{" "}
-                  <br />
-                  <span className="text-muted">Driver's Name </span> - ABC{" "}
-                  <br />
-                  <span className="text-muted">Contact No. </span> - 9191919919{" "}
-                  <br />
-                  <span className="text-muted">Cost of Ride </span> - Rs. 1000/-
-                  <br />
-                </p>
-                <button className="btn btn-primary w-100 book_btn">
-                  Book a Ride
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div
-              class="card fw-bold text-center mb-3 viewRide_card"
-              style={{ maxWidth: "100%" }}
-            >
-              <div class="card-header">Pune &lt;-&gt; Mumbai</div>
-              <div class="card-body">
-                <h5 class="card-title">Journey Details</h5>
-                <p class="card-text">
-                  <span className="text-muted">Seats Available </span> - 4{" "}
-                  <br />
-                  <span className="text-muted">Driver's Name </span> - ABC{" "}
-                  <br />
-                  <span className="text-muted">Contact No. </span> - 9191919919{" "}
-                  <br />
-                  <span className="text-muted">Cost of Ride </span> - Rs. 1000/-
-                  <br />
-                </p>
-                <button className="btn btn-primary w-100 book_btn">
-                  Book a Ride
-                </button>
-              </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
       </div>
 

@@ -4,13 +4,7 @@ import com.app.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.app.services.DriverService;
 
@@ -18,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/drivers")
+@CrossOrigin(origins = "http://localhost:3000")
 public class DriverController {
 	
 	@Autowired
@@ -60,6 +55,11 @@ public class DriverController {
 	@PutMapping("/rejectRide/{bId}")
 	public ResponseEntity<BookingDTO> rejectRide(@PathVariable Long bId) {
 		return new ResponseEntity<>(dService.rejectRide(bId), HttpStatus.OK);
+	}
+
+	@GetMapping("/vehicle/{dId}")
+	public ResponseEntity<?> getAllVehicles(@PathVariable Long dId){
+		return new ResponseEntity<>(dService.getVehicleDetails(dId), HttpStatus.OK);
 	}
 	
 }

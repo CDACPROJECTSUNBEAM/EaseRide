@@ -110,7 +110,7 @@ const ProfileScreen = () => {
                   </button>
                 </div>
                 <div className="col-md-6 col-sm-12">
-                  <span class="join">Joined Dec,2023</span>
+                  <span class="join">Joined - {user.createDate.slice(0, 10)}</span>
                 </div>
               </div>
             </div>{" "}
