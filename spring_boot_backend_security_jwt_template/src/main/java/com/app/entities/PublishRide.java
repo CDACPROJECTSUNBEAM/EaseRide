@@ -5,9 +5,12 @@ import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +24,10 @@ import org.hibernate.envers.Audited;
 @NoArgsConstructor
 @ToString
 @Audited
+
+@Table(name = "publish_ride",
+indexes = {@Index(name = "idx_publish_ride",  columnList="id", unique = true)})
+
 public class PublishRide extends BaseEntity {
 	
 	@Column(name = "start_city", nullable = false)
@@ -52,6 +59,8 @@ public class PublishRide extends BaseEntity {
 	private int availableSeats;
 	
 	
+	@Version
+    private Long version;
 	
 	
 //	driverId ---> Driver who is publishing the ride 
@@ -62,7 +71,6 @@ public class PublishRide extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "driver_id")
 	private Register driverId;
-
 
 
 

@@ -20,4 +20,8 @@ public interface DriverService {
 	public BookingDTO rejectRide(Long bId);
 
 	public List<VehicleDTO> getVehicleDetails(Long dId);
+	
+	public List<ReviewsDTO> getAllReviewsByDriverId(Long dId);
+	
+	public double getAvgRating(Long dId);
 }

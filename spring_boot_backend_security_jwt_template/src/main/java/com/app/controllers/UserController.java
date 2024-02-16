@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.app.entities.Vehicle;
 import com.app.services.DriverService;
+import com.app.services.ReviewsService;
 import com.app.services.UserService;
 
 @RestController
@@ -22,6 +23,10 @@ public class UserController {
 	
 	@Autowired
 	private DriverService dService;
+	
+	@Autowired
+	private ReviewsService rService;
+	
 	
 	@GetMapping("/availableRides")
 	public ResponseEntity<List<PublishRideDTO>> getAvailableRides() {
@@ -70,5 +75,16 @@ public class UserController {
 			return new ResponseEntity<>(e.getMessage() , HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
+	
+	@PostMapping("/review/{uId}/{dId}")
+	public ResponseEntity<?> reviewByUserId(@PathVariable Long uId,@PathVariable Long dId, @RequestBody ReviewsDTO rdto) {
+		try {
+			return new ResponseEntity<>(rService.addReviewByUser(dId, uId, rdto), HttpStatus.FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage() , HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+	}
+	
 	
 }

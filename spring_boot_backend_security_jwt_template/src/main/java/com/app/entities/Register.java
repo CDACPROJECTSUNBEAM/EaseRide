@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -30,6 +32,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @Audited
+
+@Table(name = "register",
+indexes = {@Index(name = "idx_register",  columnList="id", unique = true)})
+
 public class Register extends BaseEntity {
 	
 	@Column(name = "first_name", length = 45,  nullable = false)
@@ -64,6 +70,8 @@ public class Register extends BaseEntity {
 	@Column(name = "create_date_time")
 	private LocalDateTime createDate;
 	
+	@Version
+    private Long version;
 	
 	
 	

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.services.DriverService;
+import com.app.services.ReviewsService;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ public class DriverController {
 	
 	@Autowired
 	private DriverService dService;
+	
+	
+	@Autowired
+	private ReviewsService rService;
 	
 	@PostMapping("/addVehicle/{dId}")
 	public ResponseEntity<VehicleDTO> addVehicle(@PathVariable Long dId, @RequestBody VehicleDTO vdto) {
@@ -60,6 +65,16 @@ public class DriverController {
 	@GetMapping("/vehicle/{dId}")
 	public ResponseEntity<?> getAllVehicles(@PathVariable Long dId){
 		return new ResponseEntity<>(dService.getVehicleDetails(dId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/review/{dId}")
+	public ResponseEntity<?> getAllReviews(@PathVariable Long dId){	
+		return new ResponseEntity<>(dService.getAllReviewsByDriverId(dId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/avgReview/{dId}")
+	public ResponseEntity<?> getAllReviewss(@PathVariable Long dId){	
+		return new ResponseEntity<>(dService.getAvgRating(dId), HttpStatus.OK);
 	}
 	
 }

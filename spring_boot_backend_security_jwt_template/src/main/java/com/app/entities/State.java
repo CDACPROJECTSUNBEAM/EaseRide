@@ -19,6 +19,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
+
 public class State extends BaseEntity{
 	
 	@Column(length = 40, nullable = false)

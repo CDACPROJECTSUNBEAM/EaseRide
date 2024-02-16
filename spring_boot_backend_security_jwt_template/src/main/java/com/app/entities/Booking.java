@@ -19,6 +19,10 @@ import org.hibernate.envers.Audited;
 @NoArgsConstructor
 @ToString
 @Audited
+
+@Table(name = "booking",
+indexes = {@Index(name = "idx_booking",  columnList="id", unique = true)})
+
 public class Booking extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
@@ -44,4 +48,6 @@ public class Booking extends BaseEntity {
 	@Column(name = "create_date_time")
 	private LocalDateTime createDate;
 	
+	@Version
+    private Long version;
 }

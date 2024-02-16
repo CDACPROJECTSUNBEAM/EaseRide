@@ -28,6 +28,7 @@ public class City extends BaseEntity{
 		this.city = city;
 		this.state = state;
 	}
+//	
 	
 	
 	

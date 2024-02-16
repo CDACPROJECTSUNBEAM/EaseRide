@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.repositories.PublishRideRepository;
 import com.app.repositories.RegisterRepository;
+import com.app.repositories.ReviewsRepository;
 import com.app.repositories.VehicleRepository;
 
 import java.time.LocalDate;
@@ -42,6 +43,9 @@ public class DriverServiceImpl implements DriverService {
 	
 	@Autowired
 	private VehicleRepository vRepo;
+	
+	@Autowired
+	private ReviewsRepository reviewRepo;
 
 	@Override
 	public PublishRideDTO publishRide(Long id, Long vId, PublishRideDTO pdto) throws Exception {
@@ -182,6 +186,32 @@ public class DriverServiceImpl implements DriverService {
 		Register driver = registerRepo.findById(dId).orElseThrow();
 		List<VehicleDTO> vehicles = vRepo.findByDriverId(driver).stream().map(m -> mapper.map(m, VehicleDTO.class)).collect(Collectors.toList());
 		return vehicles;
+	}
+
+	@Override
+	public List<ReviewsDTO> getAllReviewsByDriverId(Long dId) {
+		List<ReviewsDTO> list = new ArrayList<ReviewsDTO>() ;
+		List<Reviews> list1 = new ArrayList<Reviews>() ;
+		Register driver = registerRepo.findById(dId).orElseThrow(()-> new ResourceNotFoundException("Driver Not Found"));
+		if(driver.getRole().compareTo(RoleType.ROLE_DRIVER)==0) {
+			list1= reviewRepo.getAllByDriver(driver);
+		}
+		list = list1.stream().map(m -> mapper.map(m, ReviewsDTO.class)).collect(Collectors.toList());
+		return list;
+	}
+
+	@Override
+	public double getAvgRating(Long dId) {
+		double avg = 0.0;
+		double ans = 0;
+		List<ReviewsDTO> list = getAllReviewsByDriverId(dId);
+		for(int i=0;i<list.size();i++) {
+			avg += list.get(i).getRating();
+		}
+		if(avg!=0.0) {
+			ans = avg/list.size();
+		}
+		return ans;
 	}
 
 }
