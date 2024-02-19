@@ -91,7 +91,7 @@ const UserSignupScreen = () => {
                       className="input__email"
                       placeholder="Enter Firstname"
                       id="fname"
-                      name="fname"
+                      name="fname"  
                       value={fname}
                       onChange={(e) => setFname(e.target.value)}
                       required={true}

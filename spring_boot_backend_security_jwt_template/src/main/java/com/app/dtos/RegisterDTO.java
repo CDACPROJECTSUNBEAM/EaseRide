@@ -52,7 +52,7 @@ public class RegisterDTO {
 	@NotBlank(message = "Email cannot be empty")
 	private String email;
 	
-	@NotBlank
+	@NotBlank(message = "Password cannot be empty")
 	//@Pattern(regexp="((?=.\\d)(?=.[a-z])(?=.[#@$]).{5,20})")
 	//@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;

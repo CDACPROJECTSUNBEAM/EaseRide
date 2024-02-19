@@ -74,8 +74,6 @@ public class Register extends BaseEntity {
     private Long version;
 	
 	
-	
-	
 	@OneToMany(mappedBy = "driverId", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	

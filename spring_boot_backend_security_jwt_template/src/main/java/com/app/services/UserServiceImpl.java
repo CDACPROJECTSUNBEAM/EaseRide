@@ -62,8 +62,7 @@ public class UserServiceImpl implements UserService {
 			bookingEntity.setStatus(StatusType.PENDING);
 			bookingEntity.setPrice(ride.getPrice()*bdto.getNoOfSeats());
 			bookingEntity.setCreateDate(LocalDateTime.now());
-
-			ride.setAvailableSeats(ride.getAvailableSeats() - bdto.getNoOfSeats());
+			
 //			After calling save
 //			1.tx.Commit()
 //			2.tx.Close()
@@ -71,7 +70,11 @@ public class UserServiceImpl implements UserService {
 		}else{
 			throw new Exception("No. of seats should be less than available seats");
 		}
-
+		
+//		if Booking is confirmed then and only available seats get modified 		
+		if(bookingEntity.getStatus().compareTo(StatusType.ACCEPTED)==0) {
+			ride.setAvailableSeats(ride.getAvailableSeats() - bdto.getNoOfSeats());			
+		}
 		return mapper.map(bRepo.save(bookingEntity), BookingDTO.class);
 	}
 

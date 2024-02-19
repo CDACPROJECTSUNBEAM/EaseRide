@@ -41,7 +41,7 @@ public class SecurityConfig {
 		csrf()
 		.disable().
 		authorizeRequests()
-		.antMatchers("/api/auth/signup","/api/auth/signin", "/**",
+		.antMatchers("/api/auth/signup","/api/auth/signin", "/**","/actuator/**",
 				"/v*/api-doc*/**","/swagger-ui/**").permitAll()
 		.antMatchers("/api/drivers/**").hasRole("DRIVER")
 		.antMatchers("/api/users/**").hasRole("USER")
