@@ -14,10 +14,10 @@
            Provides production-ready features like health monitoring, metrics, CPU usage, etc.
   6. Integrated Spring Ecosystem
      - Includes
-          a. Spring Framework
-          b. Spring Data JPA
-          c. Spring Security
-          d. Spring Actuators
+          - a. Spring Framework
+          - b. Spring Data JPA
+          - c. Spring Security
+          - d. Spring Actuators
        ....... 
 
 **Entities**
