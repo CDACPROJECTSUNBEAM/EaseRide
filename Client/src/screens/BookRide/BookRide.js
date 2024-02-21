@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import UserNavbar from "../../components/UserNavbar/UserNavbar";
 import UserFooter from "../../components/UserFooter/UserFooter";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
-import { getDriverDetails, getVehicleDetails } from "../../actions/userAuthAction";
+import { useParams } from "react-router-dom";
+import {
+  getAvgRating,
+  getDriverDetails,
+  getVehicleDetails,
+} from "../../actions/userAuthAction";
 import { toast } from "react-toastify";
+import star from "../../images/star.png";
 
 const BookRide = () => {
-
-    const [seats, setSeats] = useState();
-    const [validation, setValidation] = useState("");
+  const [seats, setSeats] = useState();
+  const [validation, setValidation] = useState("");
 
   const dispatch = useDispatch();
 
@@ -18,47 +22,48 @@ const BookRide = () => {
 
   const driverData = useSelector((state) => state.driver);
   let driver = driverData.response;
-  console.log(driver);
 
   const vehicleData = useSelector((state) => state.driverVehicles);
   let vehicle = vehicleData.response;
-  console.log(driver);
+
+  const ratingData = useSelector((state) => state.avgRating);
+  let avgRating = ratingData.response;
 
   let { driverId, vehicleId, rideId } = useParams();
 
   useEffect(() => {
     dispatch(getDriverDetails(driverId));
     dispatch(getVehicleDetails(driverId, vehicleId));
+    dispatch(getAvgRating(driverId));
   }, []);
 
   const submitData = (e) => {
     e.preventDefault();
 
-    if(seats <= 0){
-        setValidation("Seat selection should be greater than zero!!");
-    }else{
-        let seatsBook = {
-            noOfSeats: seats,
-        }
-          
-            fetch(`http://localhost:8081/api/users/bookRide/${user.id}/${rideId}`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(seatsBook),
-              })
-              .then(response => response.json())
-              .then(data => {
-                toast.success("Booking request successful")
-              })
-              .catch(error => {
-                toast.error("Seats not available!!")
-              });
-          
-    
-        setSeats(0);
-        setValidation("");
+    if (seats <= 0) {
+      setValidation("Seat selection should be greater than zero!!");
+    } else {
+      let seatsBook = {
+        noOfSeats: seats,
+      };
+
+      fetch(`http://localhost:8081/api/users/bookRide/${user.id}/${rideId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(seatsBook),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          toast.success("Booking request successful");
+        })
+        .catch((error) => {
+          toast.error("Seats not available!!");
+        });
+
+      setSeats(0);
+      setValidation("");
     }
   };
 
@@ -73,11 +78,110 @@ const BookRide = () => {
               <div class="card-block">
                 <h4 class="m-b-20">Driver Details</h4>
                 <h6 class="text-right">
-                  <span>Name - {driver?.fname} {driver?.lname}</span>
+                  <span>
+                    Name - {driver?.fname} {driver?.lname}
+                  </span>
                   <br />
                   <span>Contact No. - {driver?.contact}</span>
                   <br />
-                  <span>Rating - 5</span>
+                  <span>
+                    Rating -{" "}
+                    {avgRating === 1 && (
+                      <>
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                      </>
+                    )}
+                    {avgRating === 2 && (
+                      <>
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                      </>
+                    )}
+                    {avgRating === 3 && (
+                      <>
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                      </>
+                    )}
+                    {avgRating === 4 && (
+                      <>
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                      </>
+                    )}
+                    {avgRating === 4 && (
+                      <>
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                        <img
+                          src={star}
+                          alt=""
+                          style={{ width: "4%", height: "4%" }}
+                        />{" "}
+                      </>
+                    )}
+                  </span>
                 </h6>
               </div>
             </div>
@@ -117,8 +221,10 @@ const BookRide = () => {
                 />
               </div>
               <div className="d-flex justify-content-center mt-2">
-                      <span class="badge w-50" style={{backgroundColor: "#f04c47"}}>{validation}</span>
-                      </div>
+                <span class="badge w-50" style={{ backgroundColor: "#f04c47" }}>
+                  {validation}
+                </span>
+              </div>
             </form>
           </div>
         </div>

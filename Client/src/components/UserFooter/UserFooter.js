@@ -1,10 +1,13 @@
 import React from "react";
 import "./UserFooter.css";
+import google from "../../images/google.png";
+import facebook from "../../images/facebook.png";
+import gmail from "../../images/gmail.png";
 
 const UserFooter = () => {
   return (
     <>
-      <footer className="footer-distributed">
+      {/* <footer className="footer-distributed">
         <div className="footer-left">
           <h3>
             Company<span>logo</span>
@@ -60,6 +63,34 @@ const UserFooter = () => {
             </a>
           </div>
         </div>
+      </footer> */}
+
+      <footer className="footer-distributed">
+
+        <div className="row">
+          <div className="col-md-4">
+            <h3 style={{color: 'white'}}>Ease<span style={{color: 'rgb(37, 142, 234)'}}>Ride</span></h3>
+          </div>
+          <div className="col-md-4 text-center">
+            <p>
+            Copyright © EaseRide 2024
+            </p>
+          </div>
+          <div className="col-md-4 text-center">
+            <div className="row">
+              <div className="col-md-4">
+                <img src={google} alt="" style={{height: "100%", width: "25%"}} />
+              </div>
+              <div className="col-md-4">
+              <img src={facebook} alt="" style={{height: "100%", width: "25%"}} />
+              </div>
+              <div className="col-md-4">
+              <img src={gmail} alt="" style={{height: "100%", width: "25%"}} />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </footer>
     </>
   );

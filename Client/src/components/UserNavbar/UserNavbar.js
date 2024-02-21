@@ -40,7 +40,7 @@ const UserNavbar = (props) => {
               style={{ width: "7%", height: "7%", marginLeft: "2%", marginRight: "1%" }}
               className="brand_logo"
             />
-            <span className="brand_name">SwiftRide</span>
+            <span className="brand_name">EaseRide</span>
           </Link>
           <button
             class="navbar-toggler"
@@ -97,7 +97,6 @@ const UserNavbar = (props) => {
                 <img src={userImg} alt="profile" height="50" width="50" />
                 
                   <span class="name mt-3 mx-2">{stateRef.current?.fname + " " + stateRef.current?.lname}</span>
-                
                 
               <button
                 type="button"

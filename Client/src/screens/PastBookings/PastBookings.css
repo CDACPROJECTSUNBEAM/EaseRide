@@ -1,3 +1,8 @@
-.past_bookings_container{
+/* .past_bookings_container{
     max-height: 37rem;
+} */
+
+.bookings_table {
+    max-height: 32rem;
+    overflow-y: scroll;
 }

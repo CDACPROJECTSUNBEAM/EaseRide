@@ -15,7 +15,7 @@ const Header = (props) => {
               style={{ width: "7%", height: "7%", marginLeft: "2%", marginRight: "1%" }}
               className="brand_logo"
             />
-            <span className="brand_name">SwiftRide</span>
+            <span className="brand_name">EaseRide</span>
           </Link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

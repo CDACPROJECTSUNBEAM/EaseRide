@@ -16,7 +16,38 @@ const AddVehicle = () => {
   const [licence, setLicence] = useState("");
   const [aadharNo, setAadharNo] = useState("");
 
-  const data = useSelector(state => state.userSignin);
+  const [rcNoValidate, setRcNoValidate] = useState("");
+  const [aadharValidate, setAadharValidate] = useState("");
+  const [licenceValidate, setLicenceValidate] = useState("");
+
+  const checkRcNoValidation = (e) => {
+    setRcNumber(e.target.value);
+    if (e.target.value.length !== 10) {
+      setRcNoValidate("Rc Number length should be equal to 10");
+    } else {
+      setRcNoValidate("");
+    }
+  };
+
+  const checkAadharValidation = (e) => {
+    setAadharNo(e.target.value);
+    if (e.target.value.length !== 12) {
+      setAadharValidate("Aadhar Number length should be equal to 12");
+    } else {
+      setAadharValidate("");
+    }
+  };
+
+  const checkLicenceValidation = (e) => {
+    setLicence(e.target.value);
+    if (e.target.value.length !== 16) {
+      setLicenceValidate("Rc Number length should be equal to 16");
+    } else {
+      setLicenceValidate("");
+    }
+  };
+
+  const data = useSelector((state) => state.userSignin);
   let user = data.response;
 
   const dispatch = useDispatch();
@@ -30,8 +61,8 @@ const AddVehicle = () => {
       rcNumber,
       dor,
       licence,
-      aadharNo
-    }
+      aadharNo,
+    };
 
     dispatch(addVehicle(vehicleDetails, user.id, toast));
 
@@ -41,19 +72,15 @@ const AddVehicle = () => {
     setDor("");
     setLicence("");
     setAadharNo("");
-  }
+  };
 
   return (
     <>
-    <UserNavbar user={user} link={"/driver"} />
+      <UserNavbar user={user} link={"/driver"} />
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <img
-              src={vehicle}
-              alt=""
-              className="add_vehicle_img"
-            />
+            <img src={vehicle} alt="" className="add_vehicle_img" />
           </div>
           <div className="col-md-6">
             <center>
@@ -71,7 +98,7 @@ const AddVehicle = () => {
                   placeholder="Car company"
                   name="company"
                   value={company}
-                  onChange={e => setCompany(e.target.value)}
+                  onChange={(e) => setCompany(e.target.value)}
                 />
                 <label for="floatingInput">Car Company</label>
               </div>
@@ -84,7 +111,7 @@ const AddVehicle = () => {
                   placeholder="Car Model"
                   name="model"
                   value={model}
-                  onChange={e => setModel(e.target.value)}
+                  onChange={(e) => setModel(e.target.value)}
                 />
                 <label for="floatingInput">Car Model</label>
               </div>
@@ -97,11 +124,14 @@ const AddVehicle = () => {
                   placeholder="Registration Certificate Number"
                   name="rcNumber"
                   value={rcNumber}
-                  onChange={e => setRcNumber(e.target.value)}
+                  onChange={checkRcNoValidation}
                 />
                 <label for="floatingInput">
                   Registration Certificate Number
                 </label>
+                <div className="d-flex justify-content-center mt-1">
+                  <span class="badge text-bg-danger">{rcNoValidate}</span>
+                </div>
               </div>
 
               <div class="form-floating mb-3">
@@ -112,7 +142,7 @@ const AddVehicle = () => {
                   placeholder="Date of Registration"
                   name="dor"
                   value={dor}
-                  onChange={e => setDor(e.target.value)}
+                  onChange={(e) => setDor(e.target.value)}
                 />
                 <label for="floatingInput">Date of Registration</label>
               </div>
@@ -124,9 +154,12 @@ const AddVehicle = () => {
                   placeholder="Adhar Number"
                   name="aadharNo"
                   value={aadharNo}
-                  onChange={e => setAadharNo(e.target.value)}
+                  onChange={checkAadharValidation}
                 />
                 <label for="floatingInput">Adhar Card Number</label>
+                <div className="d-flex justify-content-center mt-1">
+                  <span class="badge text-bg-danger">{aadharValidate}</span>
+                </div>
               </div>
 
               <div class="form-floating mb-3">
@@ -137,9 +170,12 @@ const AddVehicle = () => {
                   placeholder="Licence Number"
                   name="licence"
                   value={licence}
-                  onChange={e => setLicence(e.target.value)}
+                  onChange={checkLicenceValidation}
                 />
                 <label for="floatingInput">Licence</label>
+                <div className="d-flex justify-content-center mt-1">
+                  <span class="badge text-bg-danger">{licenceValidate}</span>
+                </div>
               </div>
 
               <div class="d-grid">

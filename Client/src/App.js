@@ -27,6 +27,7 @@ import PastBookings from "./screens/PastBookings/PastBookings";
 import StatesScreen from "./screens/StatesScreen/StatesScreen";
 import CityScreen from "./screens/CityScreen/CityScreen";
 import BookRide from "./screens/BookRide/BookRide";
+import RatingScreen from "./screens/RatingScreen/RatingScreen";
 
 function App() {
   
@@ -46,6 +47,7 @@ function App() {
           <Route path="/user/bookRide/:driverId/:vehicleId/:rideId" element={<BookRide />} />
           <Route path="/user/reqRide" element={<ReqRide />} />
           <Route path="/user/bookings" element={<PastBookings />} />
+          <Route path="/user/rating/:dId" element={<RatingScreen />} />
           <Route path="/driver" element={<DriverDashboard />} />
           <Route path="/driver/addVehicle" element={<AddVehicle />} />
           <Route path="/driver/searchRideRequest" element={<SearchRideReq />} />

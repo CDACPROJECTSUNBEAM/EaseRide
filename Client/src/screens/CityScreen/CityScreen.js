@@ -12,8 +12,8 @@ import {
 import { toast } from "react-toastify";
 
 const CityScreen = () => {
-  const [cityName, setCityName] = useState("");
-  const [stateName, setStateName] = useState("");
+  const [city, setCity] = useState("");
+  const [stateId, setStateId] = useState("");
 
   const data = useSelector((state) => state.userSignin);
   let user = data.response;
@@ -31,15 +31,15 @@ const CityScreen = () => {
   const submitData = (e) => {
     e.preventDefault();
 
-    let cityDetails = { cityName, stateName };
+    let cityDetails = { city, stateId };
 
     dispatch(addCity(cityDetails, toast));
     setTimeout(() => {
       dispatch(getAllCities());
     }, 700);
 
-    setCityName("");
-    setStateName("");
+    setCity("");
+    setStateId("");
   };
 
   return (
@@ -100,8 +100,8 @@ const CityScreen = () => {
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     name="city"
-                    value={cityName}
-                    onChange={(e) => setCityName(e.target.value)}
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                   />
                   </div>
                 </div>
@@ -124,11 +124,12 @@ const CityScreen = () => {
                         className="form-control"
                         id="state-names"
                         style={{ width: "100%", height: "100%" }}
-                        onChange={(e) => setStateName(e.target.value)}
+                        onChange={(e) => setStateId(e.target.value)}
                       >
+                        <option value="select">Select</option>
                         {
                             states && states.map(s => (
-                                <option value={s.state}>{s.state}</option>
+                                <option value={s.id}>{s.state}</option>
                             ))
                         }
                         

@@ -5,6 +5,8 @@ import { cityAddReducer, cityReducer } from "./cityReducer";
 import { stateAddReducer, stateReducer } from "./stateReducer";
 import { USER_SIGNOUT } from "../constants/authConstants";
 import { getRideReducer, rideReducer } from "./rideReducer";
+import { bookingReducer } from "./bookingReducer";
+import { getAvgRatingReducer } from "./ratingReducer";
 
 const reducers = combineReducers({
     userSignup: userSignupReducer,
@@ -18,6 +20,8 @@ const reducers = combineReducers({
     stateAdd: stateAddReducer,
     rides: rideReducer,
     availableRides: getRideReducer,
+    bookings: bookingReducer,
+    avgRating: getAvgRatingReducer,
 })
 
 const rootReducer = (state, action) => {

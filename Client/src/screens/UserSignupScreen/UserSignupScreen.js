@@ -19,7 +19,50 @@ const UserSignupScreen = () => {
   const [gender, setGender] = useState("");
   const [role, setRole] = useState("");
 
+  const [emailValidate, setEmailValidate] = useState("");
+  const [passwordValidate, setPasswordValidate] = useState("");
+  const [cpasswordValidate, setCPasswordValidate] = useState("");
+  const [contactValidate, setContactValidate] = useState("");
+
   const dispatch = useDispatch();
+
+  const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{4,}$/g;
+
+  const checkEmailValidation = (e) => {
+    if(e.target?.value && e.target.value.match(isValidEmail)){
+      setEmailValidate("");
+    }else{
+      setEmailValidate("Invalid email");
+      setEmail(e.target.value);
+    }
+  }
+
+  const checkPasswordValidation = (e) => {
+    setPassword(e.target.value);
+    if(e.target.value.length < 6){
+      setPasswordValidate("Password length should be > 6");
+    }else{
+      setPasswordValidate("");
+    }
+  }
+
+  const checkCpasswordValidation = (e) => {
+    setCPassword(e.target.value);
+    if(e.target.value !== password){
+      setCPasswordValidate("Confirm password should match with password");
+    }else{
+      setCPasswordValidate("");
+    }
+  }
+
+  const contactValidation = (e) => {
+    setContact(e.target.value);
+    if(e.target.value.length != 10){
+      setContactValidate("Contact no. should be of 10 digits");
+    }else{
+      setContactValidate("");
+    }
+  }
 
   const submitData = (e) => {
     e.preventDefault();
@@ -121,9 +164,12 @@ const UserSignupScreen = () => {
                       id="email"
                       name="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={checkEmailValidation}
                       required={true}
                     />
+                    <div className="d-flex justify-content-center mt-1">
+                      <span class="badge text-bg-danger">{emailValidate}</span>
+                      </div>
                   </div>
                 </div>
                 <div className="row">
@@ -136,10 +182,12 @@ const UserSignupScreen = () => {
                       id="password"
                       name="password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={checkPasswordValidation}
                       required={true}
-                      minLength={6}
                     />
+                    <div className="d-flex justify-content-center mt-1">
+                      <span class="badge text-bg-danger">{passwordValidate}</span>
+                      </div>
                   </div>
                   <div className="col-md-6 col-sm-12">
                     <i className="fa-solid fa-lock password__icon"></i>
@@ -150,10 +198,12 @@ const UserSignupScreen = () => {
                       id="cpassword"
                       name="cpassword"
                       value={cpassword}
-                      onChange={(e) => setCPassword(e.target.value)}
+                      onChange={checkCpasswordValidation}
                       required={true}
-                      minLength={6}
                     />
+                    <div className="d-flex justify-content-center mt-1">
+                      <span class="badge text-bg-danger">{cpasswordValidate}</span>
+                      </div>
                   </div>
                 </div>
                 <div className="row">
@@ -166,9 +216,12 @@ const UserSignupScreen = () => {
                       id="contact"
                       name="contact"
                       value={contact}
-                      onChange={(e) => setContact(e.target.value)}
+                      onChange={contactValidation}
                       required={true}
                     />
+                    <div className="d-flex justify-content-center mt-1">
+                      <span class="badge text-bg-danger">{contactValidate}</span>
+                      </div>
                   </div>
                 </div>
                 <div className="row">

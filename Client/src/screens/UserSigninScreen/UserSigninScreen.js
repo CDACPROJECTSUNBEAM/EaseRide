@@ -10,39 +10,29 @@ import Header from "../../components/Header/Header";
 const UserSigninScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [validation, setValidation] = useState({
-    email: "",
-    password: "",
-  });
+  const [emailValidate, setEmailValidate] = useState("");
+  const [passwordValidate, setPasswordValidate] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{4,}$/g;
 
-  const emailValue = (e) => {
-    setEmail(e.target.value)
-    // if(e.target?.value && e.target.value.match(isValidEmail)){
-    //   setValidation({
-    //     email: ""
-    //   })
-    // }else{
-    //   setValidation({
-    //     email: "Invalid email"
-    //   })
-    // }
+  const checkEmailValidation = (e) => {
+    if(e.target?.value && e.target.value.match(isValidEmail)){
+      setEmailValidate("");
+    }else{
+      setEmailValidate("Invalid email");
+      setEmail(e.target.value);
+    }
   }
 
-  const passwordValue = (e) => {
+  const checkPasswordValidation = (e) => {
     setPassword(e.target.value);
-    if(password.length < 6){
-      setValidation({
-        password: "Invalid password!!"
-      })
+    if(e.target.value.length < 6){
+      setPasswordValidate("Password length should be > 6");
     }else{
-      setValidation({
-        password: ""
-      })
+      setPasswordValidate("");
     }
   }
 
@@ -54,7 +44,7 @@ const UserSigninScreen = () => {
       password
     });
 
-    if(validation.password === ""){
+    if(passwordValidate === ""){
       const userDetails = {
         email, password
       }
@@ -86,10 +76,10 @@ const UserSigninScreen = () => {
                       id="email"
                       name="email"
                       value={email}
-                      onChange={emailValue}
+                      onChange={checkEmailValidation}
                       required={true} />
                       <div className="d-flex justify-content-center mt-1">
-                      <span class="badge text-bg-danger">{validation.email}</span>
+                      <span class="badge text-bg-danger">{emailValidate}</span>
                       </div>
                   </div>
                 </div>
@@ -102,11 +92,11 @@ const UserSigninScreen = () => {
                       id="password"
                       name="password"
                       value={password}
-                      onChange={passwordValue}
+                      onChange={checkPasswordValidation}
                       required={true}
                        />
                       <div className="d-flex justify-content-center mt-1">
-                      <span class="badge text-bg-danger">{validation.password}</span>
+                      <span class="badge text-bg-danger">{passwordValidate}</span>
                       </div>
                   </div>
                 </div>

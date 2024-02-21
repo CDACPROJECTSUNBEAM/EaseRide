@@ -110,7 +110,7 @@ export const getAllStates = () => (dispatch) => {
     type: STATE_GET_REQUEST,
   });
 
-  fetch('http://localhost:8081/api/states', {
+  fetch('http://localhost:8081/api/states/', {
       method: 'GET',
     })
     .then(response => response.json())
