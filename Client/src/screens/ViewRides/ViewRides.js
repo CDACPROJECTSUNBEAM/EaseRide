@@ -37,6 +37,7 @@ const ViewRides = () => {
     <>
       <UserNavbar user={user} link={"/user"} />
 
+    <div className="viewRide_dash">
       <h1 className="text-center mt-5 mb-4">View Rides</h1>
 
       <div className="container mb-5 mt-3">
@@ -114,6 +115,7 @@ const ViewRides = () => {
       </div>
 
       <UserFooter />
+      </div>
     </>
   );
 };

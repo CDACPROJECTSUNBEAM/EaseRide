@@ -34,6 +34,7 @@ const StatesScreen = () => {
     <>
       <UserNavbar user={user} link={"/admin/home"} />
 
+      <div className="state_ctr">
       <div class="container mt-5">
         <button data-bs-toggle="modal" data-bs-target="#exampleModal2" className="mb-4 btn btn-primary">
           Add State
@@ -96,6 +97,7 @@ const StatesScreen = () => {
         </div>
       </div>
 
+      </div>
       <UserFooter />
     </>
   );

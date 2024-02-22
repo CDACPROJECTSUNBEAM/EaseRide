@@ -1,6 +1,6 @@
-/* .past_bookings_container{
-    max-height: 37rem;
-} */
+.past_bookings_container{
+    min-height: 90dvh;
+}
 
 .bookings_table {
     max-height: 32rem;

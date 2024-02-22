@@ -10,6 +10,7 @@ import {
 } from "../../actions/userAuthAction";
 import { toast } from "react-toastify";
 import star from "../../images/star.png";
+import "./BookRide.css";
 
 const BookRide = () => {
   const [seats, setSeats] = useState();
@@ -72,6 +73,7 @@ const BookRide = () => {
     <>
       <UserNavbar user={user} link={"/user"} />
 
+      <div className="bookRide_ctr">
       <div className="container mt-5 text-center">
         <div className="row">
           <div class="col-md-6 col-xl-6">
@@ -231,6 +233,8 @@ const BookRide = () => {
         </div>
       </div>
 
+      
+      </div>
       <UserFooter />
     </>
   );

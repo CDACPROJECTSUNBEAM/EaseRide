@@ -93,32 +93,42 @@ const PastBookings = () => {
 
     setTimeout(() => {
       fetch(`http://localhost:8081/api/drivers/acceptRide/${bId}`, {
-      method: "PUT",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        toast.success(`Payment of Rs.${amount/100} successful`);
+        method: "PUT",
       })
-      .catch((error) => {
-        toast.error("Payment Failed!!");
-      });
-    }, [60000])
+        .then((response) => response.json())
+        .then((data) => {
+          toast.success(`Payment of Rs.${amount / 100} successful`);
+        })
+        .catch((error) => {
+          toast.error("Payment Failed!!");
+        });
+    }, [60000]);
 
     setTimeout(() => {
       dispatch(getBookings(user.id));
-    }, [62000])
-    
+    }, [62000]);
   };
 
   return (
     <>
       <UserNavbar user={user} link={"/user"} />
 
-      <div className="container mt-5 past_bookings_container">
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Notification!</strong> Payment status will be updated after 1 min. on doing the payment.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+      <div className="past_bookings_container">
+
+      <div className="container mt-5">
+        <div
+          class="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Notification!</strong> Payment status will be updated after 1
+          min. on doing the payment.
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
         <table class="table bookings_table">
           <thead class="table-dark">
             <tr>
@@ -169,7 +179,7 @@ const PastBookings = () => {
                   </td>
                   <td>
                     <button
-                    className="btn btn-primary"
+                      className="btn btn-primary"
                       onClick={(e) => paymentHandler(e, b.price * 100, b.id)}
                       disabled={b.status === "ACCEPTED"}
                     >
@@ -183,6 +193,7 @@ const PastBookings = () => {
       </div>
 
       <UserFooter />
+      </div>
     </>
   );
 };

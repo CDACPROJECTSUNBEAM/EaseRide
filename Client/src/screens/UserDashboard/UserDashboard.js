@@ -16,7 +16,8 @@ const UserDashboard = () => {
     <>
       <UserNavbar user={user} link={"/user"} />
 
-      <div className="container my-3 text-center user_dashboard">
+    <div className="user_dashboard">
+      <div className="container my-3 text-center">
         <h1 className="mb-5 mt-5">User Dashboard</h1>
         <div className="row">
           <div className="col-md-4">
@@ -47,6 +48,7 @@ const UserDashboard = () => {
       </div>
 
       <UserFooter />
+      </div>
     </>
   );
 };

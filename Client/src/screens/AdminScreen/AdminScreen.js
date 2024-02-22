@@ -93,6 +93,7 @@ const AdminScreen = () => {
     <>
       <UserNavbar user={user} link={"/admin/home"} />
 
+    <div className="admin_ctr">
       <div class="container mt-5">
         <div class="row">
           <div class="col-md-4 col-xl-3">
@@ -101,7 +102,7 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Users</h6>
                 <h2 class="text-right">
                   <i class="fa fa-users" aria-hidden="true"></i>
-                  <span>{users?.length}</span>
+                  <span className="mx-2">{users?.length}</span>
                 </h2>
                 <Link to="/admin/users" class="m-b-0">Manage Users</Link>
               </div>
@@ -114,7 +115,7 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Drivers</h6>
                 <h2 class="text-right">
                   <i class="fa fa-user" aria-hidden="true"></i>
-                  <span>{drivers?.length}</span>
+                  <span className="mx-2">{drivers?.length}</span>
                 </h2>
                 <Link to="/admin/drivers" class="m-b-0">Manage Drivers</Link>
               </div>
@@ -127,7 +128,7 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Bookings</h6>
                 <h2 class="text-right">
                   <i class="fa fa-car" aria-hidden="true"></i>
-                  <span>{bookings?.length}</span>
+                  <span className="mx-2">{bookings?.length}</span>
                 </h2>
                 <Link to="/admin/bookings" class="m-b-0">Bookings</Link>
               </div>
@@ -139,8 +140,8 @@ const AdminScreen = () => {
               <div class="card-block">
                 <h6 class="m-b-20">Total Revenue</h6>
                 <h2 class="text-right">
-                  <i class="fa fa-credit-card f-left"></i>
-                  <span>{revenue}</span>
+                  <i class="fa fa-credit-card f-left mt-1"></i>
+                  <span className="mx-2">{revenue}</span>
                 </h2>
                 <a
                   class="m-b-0"
@@ -161,7 +162,7 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Cities</h6>
                 <h2 class="text-right">
                   <i class="fa-solid fa-city"></i>
-                  <span>{cityLength}</span>
+                  <span className="mx-2">{cityLength}</span>
                 </h2>
                 <Link class="m-b-0" to="/admin/cities">
                   Cities Registered
@@ -175,7 +176,7 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total States</h6>
                 <h2 class="text-right">
                   <i class="fa-solid fa-city"></i>
-                  <span>{stateLength}</span>
+                  <span className="mx-2">{stateLength}</span>
                 </h2>
                 <Link class="m-b-0" to="/admin/states">
                   States Registered
@@ -187,6 +188,8 @@ const AdminScreen = () => {
         </div>
       </div>
 
+      
+      </div>
       <UserFooter />
     </>
   );

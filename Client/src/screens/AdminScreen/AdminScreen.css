@@ -1,3 +1,7 @@
+.admin_ctr {
+    min-height: 70dvh;
+}
+
 .order-card {
     color: #fff;
 }

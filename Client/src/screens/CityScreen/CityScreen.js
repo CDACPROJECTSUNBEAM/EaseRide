@@ -46,6 +46,7 @@ const CityScreen = () => {
     <>
       <UserNavbar user={user} link={"/admin/home"} />
 
+    <div className="city_ctr">
       <div class="container mt-5">
         <button
           data-bs-toggle="modal"
@@ -148,7 +149,7 @@ const CityScreen = () => {
           </div>
         </div>
       </div>
-
+      </div>
       <UserFooter />
     </>
   );
