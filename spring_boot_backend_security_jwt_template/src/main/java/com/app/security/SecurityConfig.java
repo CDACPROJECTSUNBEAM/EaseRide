@@ -41,11 +41,11 @@ public class SecurityConfig {
 		csrf()
 		.disable().
 		authorizeRequests()
-		.antMatchers("/api/auth/signup","/api/auth/signin", "/**",
+		.antMatchers("/api/auth/signup","/api/auth/signin","/api/states/**","/api/cities/**", "/**",
 				"/v*/api-doc*/**","/swagger-ui/**").permitAll()
 		.antMatchers("/api/drivers/**").hasRole("DRIVER")
 		.antMatchers("/api/users/**").hasRole("USER")
-		.antMatchers("/api/admin/**", "/api/states/**", "/api/cities/**").hasRole("ADMIN")
+		.antMatchers("/api/admin/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		//to tell spring sec : not to use HttpSession to store user's auth details

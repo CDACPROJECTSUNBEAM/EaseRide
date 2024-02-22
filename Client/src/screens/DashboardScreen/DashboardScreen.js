@@ -26,7 +26,7 @@ const DashboardScreen = () => {
             </h1>
             <br />
             <p className="text-center p-1">
-              SwiftRide is a carpooling application that provides drivers{" "}
+              EaseRide is a carpooling application that provides drivers{" "}
               <br /> with the ability to create ride offers and passengers to
               join <br /> available ride offers.
             </p>
@@ -80,7 +80,7 @@ const DashboardScreen = () => {
             <div className="col-md-7 third_div_text">
               <h3 style={{color: 'white'}}>Your safety is our priority</h3>
               <p>
-                At BlaBlaCar, we're working hard to make our platform as secure
+                At EaseRide, we're working hard to make our platform as secure
                 as it can be. But when scams do happen, we want you to know
                 exactly how to avoid and report them.
               </p>

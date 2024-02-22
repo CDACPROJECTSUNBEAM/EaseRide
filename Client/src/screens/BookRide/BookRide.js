@@ -28,6 +28,7 @@ const BookRide = () => {
 
   const ratingData = useSelector((state) => state.avgRating);
   let avgRating = ratingData.response;
+  console.log(avgRating);
 
   let { driverId, vehicleId, rideId } = useParams();
 
@@ -86,7 +87,7 @@ const BookRide = () => {
                   <br />
                   <span>
                     Rating -{" "}
-                    {avgRating === 1 && (
+                    {(avgRating === 1 || avgRating === 0) && (
                       <>
                         <img
                           src={star}
@@ -152,7 +153,7 @@ const BookRide = () => {
                         />{" "}
                       </>
                     )}
-                    {avgRating === 4 && (
+                    {avgRating === 5 && (
                       <>
                         <img
                           src={star}

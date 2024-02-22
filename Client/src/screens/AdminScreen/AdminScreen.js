@@ -11,35 +11,84 @@ const AdminScreen = () => {
   let user = data.response;
   const [cityLength, setCityLength] = useState(0);
   const [stateLength, setStateLength] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  const [bookings, setBookings] = useState();
+  const [users, setUsers] = useState();
+  const [drivers, setDrivers] = useState();
 
   const dispatch = useDispatch();
 
-  
-
   useEffect(() => {
     dispatch(getAllStates());
-    fetch('http://localhost:8081/api/admin/city/count', {
-      method: 'GET',
+
+    fetch("http://localhost:8081/api/admin/city/count", {
+      method: "GET",
     })
-    .then(response => response.json())
-    .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setCityLength(data.count);
-    })
-    .catch(error => {
+      })
+      .catch((error) => {
         console.log(error);
-    });
-    fetch('http://localhost:8081/api/admin/state/count', {
-      method: 'GET',
+      });
+
+    fetch("http://localhost:8081/api/admin/state/count", {
+      method: "GET",
     })
-    .then(response => response.json())
-    .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setStateLength(data.count);
-    })
-    .catch(error => {
+      })
+      .catch((error) => {
         console.log(error);
-    });
-  }, [])
-  
+      });
+
+    fetch("http://localhost:8081/api/admin/revenue", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setRevenue(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    fetch("http://localhost:8081/api/admin/bookings", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        let filteredData = data.filter((d) => d.status === "ACCEPTED");
+        setBookings(filteredData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    fetch("http://localhost:8081/api/admin/users", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    fetch("http://localhost:8081/api/admin/drivers", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setDrivers(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <UserNavbar user={user} link={"/admin/home"} />
@@ -52,9 +101,9 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Users</h6>
                 <h2 class="text-right">
                   <i class="fa fa-users" aria-hidden="true"></i>
-                  <span>486</span>
+                  <span>{users?.length}</span>
                 </h2>
-                <a class="m-b-0">Manage Users</a>
+                <Link to="/admin/users" class="m-b-0">Manage Users</Link>
               </div>
             </div>
           </div>
@@ -65,9 +114,9 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Drivers</h6>
                 <h2 class="text-right">
                   <i class="fa fa-user" aria-hidden="true"></i>
-                  <span>486</span>
+                  <span>{drivers?.length}</span>
                 </h2>
-                <a class="m-b-0">Manage Drivers</a>
+                <Link to="/admin/drivers" class="m-b-0">Manage Drivers</Link>
               </div>
             </div>
           </div>
@@ -75,12 +124,12 @@ const AdminScreen = () => {
           <div class="col-md-4 col-xl-3">
             <div class="card bg-c-yellow order-card">
               <div class="card-block">
-                <h6 class="m-b-20">Total Rides</h6>
+                <h6 class="m-b-20">Total Bookings</h6>
                 <h2 class="text-right">
                   <i class="fa fa-car" aria-hidden="true"></i>
-                  <span>486</span>
+                  <span>{bookings?.length}</span>
                 </h2>
-                <a class="m-b-0">Rides Per Month</a>
+                <Link to="/admin/bookings" class="m-b-0">Bookings</Link>
               </div>
             </div>
           </div>
@@ -91,13 +140,13 @@ const AdminScreen = () => {
                 <h6 class="m-b-20">Total Revenue</h6>
                 <h2 class="text-right">
                   <i class="fa fa-credit-card f-left"></i>
-                  <span>486</span>
+                  <span>{revenue}</span>
                 </h2>
                 <a
                   class="m-b-0"
                   style={{ textDecoration: "none", cursor: "default" }}
                 >
-                  Revenue Per Month
+                  Total Revenue
                 </a>
               </div>
             </div>
@@ -105,16 +154,18 @@ const AdminScreen = () => {
         </div>
 
         <div class="row">
-            <div className="col-md-4 col-xl-3"></div>
+          <div className="col-md-4 col-xl-3"></div>
           <div class="col-md-4 col-xl-3">
             <div class="card bg-c-blue order-card">
               <div class="card-block">
                 <h6 class="m-b-20">Total Cities</h6>
                 <h2 class="text-right">
-                <i class="fa-solid fa-city"></i>
+                  <i class="fa-solid fa-city"></i>
                   <span>{cityLength}</span>
                 </h2>
-                <Link class="m-b-0" to="/admin/cities">Cities Registered</Link>
+                <Link class="m-b-0" to="/admin/cities">
+                  Cities Registered
+                </Link>
               </div>
             </div>
           </div>
@@ -123,10 +174,12 @@ const AdminScreen = () => {
               <div class="card-block">
                 <h6 class="m-b-20">Total States</h6>
                 <h2 class="text-right">
-                <i class="fa-solid fa-city"></i>
+                  <i class="fa-solid fa-city"></i>
                   <span>{stateLength}</span>
                 </h2>
-                <Link class="m-b-0" to="/admin/states">States Registered</Link>
+                <Link class="m-b-0" to="/admin/states">
+                  States Registered
+                </Link>
               </div>
             </div>
           </div>

@@ -28,6 +28,9 @@ import StatesScreen from "./screens/StatesScreen/StatesScreen";
 import CityScreen from "./screens/CityScreen/CityScreen";
 import BookRide from "./screens/BookRide/BookRide";
 import RatingScreen from "./screens/RatingScreen/RatingScreen";
+import ManageUsers from "./screens/ManageUsers/ManageUsers";
+import ManageDrivers from "./screens/ManageDrivers/ManageDrivers";
+import ManageBookings from "./screens/ManageBookings/ManageBookings";
 
 function App() {
   
@@ -40,6 +43,9 @@ function App() {
           <Route path="/admin/home" element={<AdminScreen />} />
           <Route path="/admin/states" element={<StatesScreen />} />
           <Route path="/admin/cities" element={<CityScreen />} />
+          <Route path="/admin/users" element={<ManageUsers />} />
+          <Route path="/admin/drivers" element={<ManageDrivers />} />
+          <Route path="/admin/bookings" element={<ManageBookings />} />
           <Route path="/user/signup" element={<UserSignupScreen />} />
           <Route path="/user/signin" element={<UserSigninScreen />} />
           <Route path="/user" element={<UserDashboard />} />

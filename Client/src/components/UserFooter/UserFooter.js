@@ -67,26 +67,20 @@ const UserFooter = () => {
 
       <footer className="footer-distributed">
 
-        <div className="row">
+        <div className="row mt-3">
           <div className="col-md-4">
             <h3 style={{color: 'white'}}>Ease<span style={{color: 'rgb(37, 142, 234)'}}>Ride</span></h3>
           </div>
           <div className="col-md-4 text-center">
-            <p>
+            <p style={{color: 'white'}}>
             Copyright © EaseRide 2024
             </p>
           </div>
           <div className="col-md-4 text-center">
-            <div className="row">
-              <div className="col-md-4">
-                <img src={google} alt="" style={{height: "100%", width: "25%"}} />
-              </div>
-              <div className="col-md-4">
-              <img src={facebook} alt="" style={{height: "100%", width: "25%"}} />
-              </div>
-              <div className="col-md-4">
-              <img src={gmail} alt="" style={{height: "100%", width: "25%"}} />
-              </div>
+            <div className="row d-flex justify-content-end">
+            <img src={google} alt="" style={{height: "100%", width: "12%"}} />
+            <img src={facebook} alt="" style={{height: "100%", width: "12%"}} />
+            <img src={gmail} alt="" style={{height: "100%", width: "12%"}} />
             </div>
           </div>
         </div>
